@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# vim: ft=yaml
+---
+tool:
+  wallpaper:
+    defaults:           # default formula configuration for all users
+      default: crazy_ass_wallpaper.jpeg
+
+  users:
+    user:
+      xdg: true             # force xdg dirs (ie sync to ~/.local/share/wallpapers)
+      dotconfig: true       # sync this user's wallpapers from a dotfiles repo available as
+                            # salt://dotconfig/<user>/wallpapers or salt://dotconfig/wallpapers
+      wallpaper:
+        default: rather_sick_wallpaper.png
