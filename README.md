@@ -71,6 +71,11 @@ tool:
 to the user's target dir for every user that has it enabled (see `user.dotconfig`). The target folder will not be cleaned by default (ie files in the target that are absent from the user's dotconfig will stay).
 
 ## Todo
-- add desktop-specific config (rather than all)
+- implement with os api
+- add desktop-specific config (rather than all) (see reference)
 - add Linux
 - add Windows
+
+## References
+- https://github.com/gregneagle/psumac2017/blob/master/05_AppKit_NSWorkspace/06_desktop_picture.py
+- https://developer.apple.com/documentation/appkit/nsworkspace
