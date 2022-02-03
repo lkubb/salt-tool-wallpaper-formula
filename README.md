@@ -66,7 +66,9 @@ tool:
 `tool-wallpaper.configsync` will sync wallpapers from 
 
 - `salt://dotconfig/<user>/wallpapers` or
-- `salt://dotconfig/wallpapers`
+- `salt://dotconfig/wallpapers` or
+- `salt://dotdata/<user>/wallpapers` or
+- `salt://dotdata/wallpapers`
 
 to the user's target dir for every user that has it enabled (see `user.dotconfig`). The target folder will not be cleaned by default (ie files in the target that are absent from the user's dotconfig will stay).
 

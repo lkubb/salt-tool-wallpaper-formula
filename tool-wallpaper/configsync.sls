@@ -7,6 +7,8 @@ Wallpaper configuration is synced for user '{{ user.name }}':
     - source:
       - salt://dotconfig/{{ user.name }}/wallpapers
       - salt://dotconfig/wallpapers
+      - salt://dotdata/{{ user.name }}/wallpapers
+      - salt://dotdata/wallpapers
     - user: {{ user.name }}
     - group: {{ user.group }}
     - file_mode: keep
