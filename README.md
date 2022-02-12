@@ -13,8 +13,12 @@ The following shows an example of `tool-wallpaper` pillar configuration. Namespa
 ```yaml
 user:
   xdg: true             # force xdg dirs (ie sync to ~/.local/share/wallpapers)
-  dotconfig: true       # sync this user's wallpapers from a dotfiles repo available as
-                        # salt://dotconfig/<user>/wallpapers or salt://dotconfig/wallpapers
+  # sync this user's wallpapers from a dotfiles repo available as
+  # salt://dotconfig/<user>/wallpapers or salt://dotconfig/wallpapers
+  dotconfig:              # can be bool or mapping
+    file_mode: '0600'     # default: keep destination or salt umask (new)
+    dir_mode: '0700'      # default: 0700
+    clean: false          # delete files in target. default: false
   wallpaper:
     default: rather_sick_wallpaper.png
 ```
