@@ -12,6 +12,8 @@ Default wallpaper is configured for user {{ user.name }}:
         test -f "{{ user._wallpaper.datadir }}/{{ user.wallpaper.default }}" || exit 1
         osascript -e 'tell application "System Events" to tell every desktop to set picture to "{{ user._wallpaper.datadir }}/{{ user.wallpaper.default }}" as POSIX file'
     - runas: {{ user.name }}
+    - unless:
+      - test "$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')" = "{{ user._wallpaper.datadir }}/{{ user.wallpaper.default }}"
     - require:
       - Wallpaper configuration is synced for user '{{ user.name }}'
   {%- endfor %}
