@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- set tplroot = tpldir.split('/')[0] %}
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as wallpapers with context %}
 
 
 include:
   - {{ tplroot }}.config.sync
 
-{%- if 'Darwin' == grains.kernel %}
-{%-   for user in wallpapers.users | selectattr('wallpapers.default', 'defined') %}
+{%- if grains.kernel == "Darwin" %}
+{%-   for user in wallpapers.users | selectattr("wallpapers.default", "defined") %}
 {%-     set default_wallpaper = user._wallpapers.datadir | path_join(user.wallpapers.default) %}
 
 Default wallpaper is configured for user '{{ user.name }}':

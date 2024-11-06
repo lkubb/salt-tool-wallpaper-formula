@@ -1,7 +1,10 @@
-# -*- coding: utf-8 -*-
 # vim: ft=sls
 
-{%- set tplroot = tpldir.split('/')[0] %}
+{#-
+    Removes custom wallpapers.
+#}
+
+{%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as wallpapers with context %}
 
 
@@ -11,6 +14,6 @@
 
 Wallpapers data dir is absent for user '{{ user.name }}':
   file.absent:
-    - name: {{ user['_wallpapers'].datadir }}
+    - name: {{ user["_wallpapers"].datadir }}
 {%-   endif %}
 {%- endfor %}
