@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "salt_tool_wallpapers"
+name = "tool_wallpapers_formula"
 version = "1.0.0"
 description = "Saltstack states to manage Wallpapers"
 authors = ["lkubb"]

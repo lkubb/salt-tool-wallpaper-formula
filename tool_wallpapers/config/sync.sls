@@ -2,25 +2,36 @@
 
 {%- set tplroot = tpldir.split("/")[0] %}
 {%- from tplroot ~ "/map.jinja" import mapdata as wallpapers with context %}
-{%- from tplroot ~ "/libtofs.jinja" import files_switch %}
+{%- from tplroot ~ "/libtofsstack.jinja" import files_switch %}
 
 
 {%- for user in wallpapers.users | selectattr("dotconfig", "defined") | selectattr("dotconfig") %}
 {%-   set dotconfig = user.dotconfig if user.dotconfig is mapping else {} %}
+{%-   set sources = files_switch(
+            ["wallpapers"],
+            lookup="Wallpapers configuration is synced for user '{}'".format(user.name),
+            config=wallpapers,
+            path_prefix="dotconfig",
+            files_dir="",
+            custom_data={"users": [user.name]},
+      ) | load_json
+%}
+{%-   do sources.extend(
+        files_switch(
+            ["wallpapers"],
+            lookup="Wallpapers configuration is synced for user '{}'".format(user.name),
+            config=wallpapers,
+            path_prefix="dotdata",
+            files_dir="",
+            custom_data={"users": [user.name]},
+        ) | load_json
+      )
+%}
 
 Wallpapers are synced for user '{{ user.name }}':
   file.recurse:
     - name: {{ user["_wallpapers"].datadir }}
-    - source: {{ files_switch(
-                ["wallpapers"],
-                default_files_switch=["id", "os_family"],
-                override_root="dotconfig",
-                opt_prefixes=[user.name]) }}
-              {{ files_switch(
-                ["wallpapers"],
-                default_files_switch=["id", "os_family"],
-                override_root="dotdata",
-                opt_prefixes=[user.name]) }}
+    - source: {{ sources | json }}
     - context:
         user: {{ user | json }}
     - template: jinja

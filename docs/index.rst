@@ -1,5 +1,5 @@
-Welcome to salt-tool-wallpapers-formula's documentation!
-========================================================
+Welcome to tool-wallpapers-formula's documentation!
+===================================================
 
 .. toctree::
    :maxdepth: 2
