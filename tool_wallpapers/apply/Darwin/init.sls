@@ -15,7 +15,7 @@ Default wallpaper is configured for user '{{ user.name }}':
   cmd.run:
     - name: |
         test -f '{{ default_wallpaper }}' || exit 1
-        osascript -e 'tell application "System Events" to tell every desktop to set picture to '{{ default_wallpaper }}' as POSIX file'
+        osascript -e 'tell application "System Events" to tell every desktop to set picture to "{{ default_wallpaper }}" as POSIX file'
     - runas: {{ user.name }}
     - unless:
       - test "$(osascript -e 'tell app "finder" to get posix path of (get desktop picture as alias)')" = '{{ default_wallpaper }}'
